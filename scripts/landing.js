@@ -29,4 +29,5 @@ var animatePoints = function() {
 
      };
 
+
      animatePoints();
