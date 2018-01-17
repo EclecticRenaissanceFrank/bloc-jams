@@ -14,6 +14,7 @@
      ]
  };
 
+
  // Another Example Album
  var albumMarconi = {
      title: 'The Telephone',
@@ -30,6 +31,26 @@
      ]
  };
 
+
+ /* Assignment
+ Add an event listener to the album cover.
+ When a user clicks it, the album page content should toggle
+ between the three album objects: albumPicasso, albumMarconi, and your album object.
+ */
+ var albumStrungOut = {
+     title: 'Twisted By Design',
+     artist: 'Strung Out',
+     label: 'Fat Wreck Chords',
+     year: '1998',
+     albumArtUrl: 'assets/images/album_covers/10.png',
+     songs: [
+         { title: 'Too Close To See?', duration: '3:01' },
+         { title: 'Mind Of My Own', duration: '4:01' },
+         { title: 'Matchbook', duration: '4:21'},
+         { title: 'Ice Burn', duration: '2:14' },
+         { title: 'Wrong Side Of The Tracks', duration: '2:45'}
+     ]
+ };
 
 
 
@@ -74,3 +95,17 @@
   window.onload = function() {
       setCurrentAlbum(albumPicasso);
   };
+
+if (albumImage == albumPicasso) {
+  albumImage.onclick = function () {
+    setCurrentAlbum(albumMarconi);
+  } else if (albumImage == albumMarconi) {
+    albumImage.onclick = function () {
+      setCurrentAlbum(albumStrungOut);
+    } else {
+      albumImage.onclick = function () {
+        setCurrentAlbum(albumPicasso);
+      };
+    }
+  }
+}
