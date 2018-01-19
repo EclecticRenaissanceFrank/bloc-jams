@@ -36,6 +36,14 @@
  Add an event listener to the album cover.
  When a user clicks it, the album page content should toggle
  between the three album objects: albumPicasso, albumMarconi, and your album object.
+
+ document.getElementById('clickme').addEventListener('click', printMessage);
+
+
+ window.addEventListener('scroll', function(event) {
+         console.log(event);
+     });
+
  */
  var albumStrungOut = {
      title: 'Twisted By Design',
@@ -67,16 +75,14 @@
  };
 
 
+ var albumTitle = document.getElementsByClassName('album-view-title')[0];
+ var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+ var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+ var albumImage = document.getElementsByClassName('album-cover-art')[0];
+ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 
  var setCurrentAlbum = function(album) {
-      // #1
-      var albumTitle = document.getElementsByClassName('album-view-title')[0];
-      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-      var albumImage = document.getElementsByClassName('album-cover-art')[0];
-      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
-
       // #2
       albumTitle.firstChild.nodeValue = album.title;
       albumArtist.firstChild.nodeValue = album.artist;
@@ -94,18 +100,16 @@
 
   window.onload = function() {
       setCurrentAlbum(albumPicasso);
-  };
 
-if (albumImage == albumPicasso) {
-  albumImage.onclick = function () {
-    setCurrentAlbum(albumMarconi);
-  } else if (albumImage == albumMarconi) {
-    albumImage.onclick = function () {
-      setCurrentAlbum(albumStrungOut);
-    } else {
-      albumImage.onclick = function () {
-        setCurrentAlbum(albumPicasso);
-      };
-    }
-  }
-}
+      var albums = [albumPicasso, albumMarconi, albumStrungOut];
+      var index = 1;
+
+      albumImage.addEventListener("click", function(event) {
+        setCurrentAlbum(albums[index]);
+        index++;
+
+        if (index == albums.length) {
+          index = 0;
+        }
+      });
+  };
