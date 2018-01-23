@@ -99,6 +99,14 @@
       }
   };
 
+/*
+Checks to see if a parent exists.
+If it doesn't, then console.log a string that says "No parent found".
+Shows a different string in console.log when it
+fails to find a parent with the given class name:
+"No parent found with that class name".
+}
+*/
 
 var findParentByClassName = function(element, targetClass) {
   if (element) {
@@ -109,7 +117,15 @@ var findParentByClassName = function(element, targetClass) {
     return currentParent;
   }
 };
+    /*
+    if (parent === false) {
+      console.log("No parent found");
+    } else if (parent !== targetClass) {
+      console.log("No parent found with that class name");
+    }
+    };
 
+  */
 
 
 var getSongItem = function(element) {
@@ -214,4 +230,4 @@ var clickHandler = function(targetElement) {
 
 
 
-// checkpoint-27-dom-scripting-play-pause-part-2
+// assignment-27-dom-scripting-play-pause-part-2
