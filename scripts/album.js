@@ -129,7 +129,7 @@ $(document).ready(function() {
       index = 0;
     }
   });
-};
+})
 
 
 var nextSong = function() {
