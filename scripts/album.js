@@ -14,7 +14,7 @@ var createSongRow = function(songNumber, songName, songLength) {
     var songNumber = parseInt($(this).attr('data-song-number'));
 
     if (currentlyPlayingSongNumber !== null) {
-      var currentlyPlayingCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
+      var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
       currentlyPlayingCell.html(currentlyPlayingSongNumber);
     }
     if (currentlyPlayingSongNumber !== songNumber) {
@@ -151,8 +151,8 @@ var nextSong = function() {
   // Update the Player Bar information
   updatePlayerBarSong();
 
-  var $nextSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
-  var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
+  var $nextSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
+  var $lastSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
 
   $nextSongNumberCell.html(pauseButtonTemplate);
   $lastSongNumberCell.html(lastSongNumber);
@@ -180,9 +180,32 @@ var previousSong = function() {
 
   $('.main-controls .play-pause').html(playerBarPauseButton);
 
-  var $previousSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
-  var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
+  var $previousSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
+  var $lastSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
 
   $previousSongNumberCell.html(pauseButtonTemplate);
   $lastSongNumberCell.html(lastSongNumber);
+};
+
+
+
+// Create a setSong function that takes one argument, songNumber, and
+// assigns currentlyPlayingSongNumber and currentSongFromAlbum a new value based on the new song number.
+//
+// Replace all instances where we manually assign values
+// to these functions with a call to setSong().
+// setSong(songNumber)
+// Write a function named getSongNumberCell that takes one argument, number,
+// and returns the song number element that corresponds to that song number.
+//
+// Replace all instances where we use the selector with a getSongNumberCell() call.
+
+var setSong = function(songNumber) {
+  currentlyPlayingSongNumber = parseInt(songnumber);
+  currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+
+};
+setSong(songNumber)
+var getSongNumberCell = function(number) {
+  return $('.song-item-number[data-song-number="' + number + '"]');
 };
