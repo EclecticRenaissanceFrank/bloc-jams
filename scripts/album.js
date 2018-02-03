@@ -19,7 +19,7 @@ var createSongRow = function(songNumber, songName, songLength) {
     }
     if (currentlyPlayingSongNumber !== songNumber) {
       $(this).html(pauseButtonTemplate);
-      currentlyPlayingSongNumber = songNumber;
+      setSong(songNumber);
       currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
       updatePlayerBarSong();
     } else if (currentlyPlayingSongNumber === songNumber) {
@@ -193,7 +193,7 @@ var previousSong = function() {
 //
 // Replace all instances where we manually assign values
 // to these functions with a call to setSong().
-// setSong(songNumber)
+// setSong(songNumber);
 // Write a function named getSongNumberCell that takes one argument, number,
 // and returns the song number element that corresponds to that song number.
 //
