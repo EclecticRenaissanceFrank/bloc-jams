@@ -32,7 +32,7 @@ var createSongRow = function(songNumber, songName, songLength) {
 
   var onHover = function(event) {
     var songNumberCell = parseInt($(this).find('.song-item-number'));
-    var songNumber = parseInt(songNumberCell.attr('data-song-number'));
+    setSong(songNumber);
 
     if (songNumber !== currentlyPlayingSongNumber) {
       songNumberCell.html(playButtonTemplate);
@@ -41,7 +41,7 @@ var createSongRow = function(songNumber, songName, songLength) {
 
   var offHover = function(event) {
     var songNumberCell = parseInt($(this).find('.song-item-number'));
-    var songNumber = parseInt(songNumberCell.attr('data-song-number'));
+    setSong(songNumber);
 
     if (songNumber !== currentlyPlayingSongNumber) {
       songNumberCell.html(songNumber);
@@ -201,11 +201,11 @@ var previousSong = function() {
 // Replace all instances where we use the selector with a getSongNumberCell() call.
 
 var setSong = function(songNumber) {
-  currentlyPlayingSongNumber = parseInt(songnumber);
+  setSong(songNumber);
   currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
 
 };
-setSong(songNumber)
+
 var getSongNumberCell = function(number) {
   return $('.song-item-number[data-song-number="' + number + '"]');
 };
