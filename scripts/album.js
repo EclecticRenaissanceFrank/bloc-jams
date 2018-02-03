@@ -201,7 +201,7 @@ var previousSong = function() {
 // Replace all instances where we use the selector with a getSongNumberCell() call.
 
 var setSong = function(songNumber) {
-  setSong(songNumber);
+  currentlyPlayingSongNumber = parseInt(songNumber);
   currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
 
 };
