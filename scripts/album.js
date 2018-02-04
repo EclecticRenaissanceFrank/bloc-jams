@@ -143,7 +143,7 @@ var nextSong = function() {
   var lastSongNumber = currentlyPlayingSongNumber;
 
   // Set a new current song
-  setSong();
+  setSong(songNumber);
 
   // Update the Player Bar information
   updatePlayerBarSong();
@@ -169,7 +169,7 @@ var previousSong = function() {
   var lastSongNumber = currentlyPlayingSongNumber;
 
   // Set a new current song
-  setSong();
+  setSong(songNumber);
 
   // Update the Player Bar information
   updatePlayerBarSong();
@@ -184,7 +184,6 @@ var previousSong = function() {
 };
 
 
-
 // Create a setSong function that takes one argument, songNumber, and
 // assigns currentlyPlayingSongNumber and currentSongFromAlbum a new value based on the new song number.
 //
@@ -196,6 +195,7 @@ var previousSong = function() {
 // and returns the song number element that corresponds to that song number.
 //
 // Replace all instances where we use the selector with a getSongNumberCell() call.
+
 
 var setSong = function(songNumber) {
   currentlyPlayingSongNumber = parseInt(songNumber);
