@@ -24,8 +24,7 @@ var createSongRow = function(songNumber, songName, songLength) {
     } else if (currentlyPlayingSongNumber === songNumber) {
       $(this).html(playButtonTemplate);
       $('.main-controls .play-pause').html(playerBarPlayButton);
-      currentlyPlayingSongNumber = null;
-      currentSongFromAlbum = null;
+      setSong(songNumber);
     }
   };
 
@@ -143,7 +142,7 @@ var nextSong = function() {
   var lastSongNumber = currentlyPlayingSongNumber;
 
   // Set a new current song
-  setSong(songNumber);
+  setSong(currentSongIndex);
 
   // Update the Player Bar information
   updatePlayerBarSong();
@@ -169,7 +168,7 @@ var previousSong = function() {
   var lastSongNumber = currentlyPlayingSongNumber;
 
   // Set a new current song
-  setSong(songNumber);
+  setSong(currentSongIndex);
 
   // Update the Player Bar information
   updatePlayerBarSong();
