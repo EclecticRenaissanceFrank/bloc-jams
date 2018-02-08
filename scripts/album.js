@@ -199,7 +199,7 @@ var previousSong = function() {
 var setSong = function(songNumber) {
   currentlyPlayingSongNumber = parseInt(songNumber);
   currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
-
+console.log(songNumber)
 };
 
 var getSongNumberCell = function(number) {
