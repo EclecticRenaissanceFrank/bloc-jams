@@ -82,7 +82,9 @@ var setCurrentAlbum = function(album) {
 
 
 var trackIndex = function(album, song) {
+  console.log(song);
   return album.songs.indexOf(song);
+
 };
 
 
@@ -199,9 +201,14 @@ var previousSong = function() {
 var setSong = function(songNumber) {
   currentlyPlayingSongNumber = parseInt(songNumber);
   currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
-console.log(songNumber)
+console.log(songNumber);
 };
 
 var getSongNumberCell = function(number) {
   return $('.song-item-number[data-song-number="' + number + '"]');
 };
+
+
+// Take another look when you get back.
+// It's not the condition in the `if` statement that's causing the problem.
+// Line 165
