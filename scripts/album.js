@@ -7,7 +7,7 @@ var createSongRow = function(songNumber, songName, songLength) {
   + '  <td class="song-item-duration">' + songLength + '</td>'
   + '</tr>'
   ;
-
+console.log(template);
   var $row = $(template);
 
   var clickHandler = function() {
@@ -135,6 +135,7 @@ var nextSong = function() {
   var currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
   // Note that we're _incrementing_ the song here
   currentSongIndex++;
+  console.log(currentSongIndex);
 
   if (currentSongIndex >= currentAlbum.songs.length) {
     currentSongIndex = 0;
@@ -161,6 +162,7 @@ var previousSong = function() {
   var currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
   // Note that we're _decrementing_ the index here
   currentSongIndex--;
+  console.log(currentSongIndex);
 
   if (currentSongIndex < 0) {
     currentSongIndex = currentAlbum.songs.length - 1;
@@ -168,7 +170,7 @@ var previousSong = function() {
 
   // Save the last song number before changing it
   var lastSongNumber = currentlyPlayingSongNumber;
-
+console.log(lastSongNumber);
   // Set a new current song
   setSong(currentSongIndex);
 
