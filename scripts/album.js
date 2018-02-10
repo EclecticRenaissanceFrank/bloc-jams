@@ -134,6 +134,7 @@ $(document).ready(function() {
 var nextSong = function() {
   var currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
   // Note that we're _incrementing_ the song here
+  console.log(currentSongIndex);
   currentSongIndex++;
   console.log(currentSongIndex);
 
@@ -202,7 +203,7 @@ console.log(lastSongNumber);
 
 var setSong = function(songNumber) {
   currentlyPlayingSongNumber = parseInt(songNumber);
-  currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+  currentSongFromAlbum = currentAlbum.songs[songNumber];
 console.log(songNumber);
 };
 
