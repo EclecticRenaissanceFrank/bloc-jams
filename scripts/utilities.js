@@ -10,22 +10,18 @@ Execute a callback for each element.
 Replace the for loop in the animatePoints function with a forEach block
 and confirm that the selling points still animate properly.
 
-
 var forEach = function () {
 
 for(var i = 0; i < pointsArray.length; i++){
 
-
 };
 
-
 };
-
 
 */
 
-function forEach(array, callback) {
-  for(var i = 0; i < array.length; i++) {
-    callback(array[i]);
+function forEach (array, callback) {
+  for (var i = 0; i < array.length; i++) {
+    callback(array[i])
   }
 }
