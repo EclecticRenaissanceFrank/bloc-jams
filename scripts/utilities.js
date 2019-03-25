@@ -1,3 +1,5 @@
+"use strict";
+
 /*
 
 Write a function named forEach in the utilities.js file.

@@ -1,38 +1,38 @@
 body.album {
-     background-image: url(../assets/images/blurred_backgrounds/blur_bg_3.jpg);
-     background-repeat: no-repeat;
-     background-attachment: fixed;
-     background-position: center center;
-     background-size: cover;
-     padding-bottom: 200px;
-    }
+    background-image: url(../assets/images/blurred_backgrounds/blur_bg_3.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    padding-bottom: 200px;
+}
 
 .album-cover-art {
-   position: relative;
-   left: 20%;
-   margin-top: 1rem;
-   width: 60%;  
+    position: relative;
+    left: 20%;
+    margin-top: 1rem;
+    width: 60%;  
 }
 
 .album-view-details {
-   position: relative;
-   top: 1.5rem;
-   padding: 1rem; 
+    position: relative;
+    top: 1.5rem;
+    padding: 1rem; 
 }
 
 .album-view-details .album-view-title {
-   font-weight: 300;
-   font-size: 2rem; 
+    font-weight: 300;
+    font-size: 2rem; 
 }
 
 .album-view-details .album-view-artist {
-   font-weight: 300;
-   font-size: 1.5rem;
+    font-weight: 300;
+    font-size: 1.5rem;
 }
 
 .album-view-details .album-view-release-info {
-   font-weight: 300;
-   font-size: 0.75rem;
+    font-weight: 300;
+    font-size: 0.75rem;
 }
 
 .album-view-song-list {
@@ -64,44 +64,39 @@ body.album {
 
 
 
+.album-song-button {
+    text-align: center;
+    font-size: 14px;
+    background-color: white;
+    color: rgb(210, 40, 123);
+    border-radius: 50% 50%;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+}
 
+.album-song-button:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(210, 40, 123);
+}
 
-
-
- .album-song-button {
-     text-align: center;
-     font-size: 14px;
-     background-color: white;
-     color: rgb(210, 40, 123);
-     border-radius: 50% 50%;
-     display: inline-block;
-     width: 28px;
-     height: 28px;
- }
-
- .album-song-button:hover {
-     cursor: pointer;
-     color: white;
-     background-color: rgb(210, 40, 123);
- }
-
- .album-song-button span {
-     line-height: 28px;
- }
-
-
-
-
+.album-song-button span {
+    line-height: 28px;
+}
 
 
 
 /* #2 */
 @media (max-width: 640px) and (min-width: 320px) {
     .album-view-details {
-        text-align: center;   }
+        text-align: center;
+    }
 
     .album-view-title {
-        margin-top: 0;    }   }
+        margin-top: 0;
+    }
+}
 
 /* #3 */
 @media (max-width: 1024px) and (min-width: 320px) {
@@ -109,4 +104,6 @@ body.album {
         position: relative;
         top: 1rem;
         width: 80%;
-        margin: auto;   }   }
+        margin: auto;
+    }
+}
