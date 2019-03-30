@@ -151,6 +151,8 @@ var nextSong = function() {
     // Update the Player Bar information
     updatePlayerBarSong();
 
+    $('.main-controls .play-pause').html(playerBarPauseButton);
+
     var $nextSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
     var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
 
@@ -175,6 +177,7 @@ var previousSong = function() {
     // Set a new current song
     setSong(currentSongIndex - 1);
     //currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+    console.log(currentSongFromAlbum)
 
     // Update the Player Bar information
     updatePlayerBarSong();
