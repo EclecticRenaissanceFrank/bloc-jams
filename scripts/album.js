@@ -151,7 +151,7 @@ var nextSong = function() {
     // Update the Player Bar information
     updatePlayerBarSong();
 
-    $('.main-controls .play-pause').html(playerBarPauseButton);
+    //$('.main-controls .play-pause').html(playerBarPauseButton);
 
     var $nextSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
     var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
