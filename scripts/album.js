@@ -137,6 +137,7 @@ var updatePlayerBarSong = function() {
 
 
 $(document).ready(function() {
+    console.log("albumLoaded")
     setCurrentAlbum(albumPicasso);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
@@ -172,10 +173,12 @@ var nextSong = function() {
 
 
 var previousSong = function() {
+    console.log("previousClicked")
+    console.log(currentSongFromAlbum)
     var currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
     // Note that we're _decrementing_ the index here
     currentSongIndex--;
-
+console.log(currentSongIndex)
     if (currentSongIndex < 0) {
         currentSongIndex = currentAlbum.songs.length - 1;
     }
@@ -184,7 +187,7 @@ var previousSong = function() {
     var lastSongNumber = currentlyPlayingSongNumber;
 
     // Set a new current song
-    setSong(currentSongIndex);
+    setSong(currentSongIndex + 1);
 
     // Update the Player Bar information
     updatePlayerBarSong();
