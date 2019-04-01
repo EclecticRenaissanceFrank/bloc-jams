@@ -26,7 +26,6 @@ var setSong = function(songNumber) {
     //assigns currentlyPlayingSongNumber and currentSongFromAlbum a new value based on the new song number.
     currentlyPlayingSongNumber = parseInt(songNumber);
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
-    console.log(currentSongFromAlbum)
 }
 //Replace all instances where we manually assign values to these functions with a call to setSong().
 
@@ -137,7 +136,6 @@ var updatePlayerBarSong = function() {
 
 
 $(document).ready(function() {
-    console.log("albumLoaded")
     setCurrentAlbum(albumPicasso);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
@@ -173,12 +171,10 @@ var nextSong = function() {
 
 
 var previousSong = function() {
-    console.log("previousClicked")
-    console.log(currentSongFromAlbum)
     var currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
     // Note that we're _decrementing_ the index here
     currentSongIndex--;
-console.log(currentSongIndex)
+    
     if (currentSongIndex < 0) {
         currentSongIndex = currentAlbum.songs.length - 1;
     }
