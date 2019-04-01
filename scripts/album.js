@@ -2,17 +2,41 @@
 
 
 
+// Album button templates
+var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
+var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
+var playerBarPlayButton = '<span class="ion-play"></span>';
+var playerBarPauseButton = '<span class="ion-pause"></span>';
+
+
+
+// Store state of playing songs
+var currentAlbum = null;
+var currentlyPlayingSongNumber = null;
+var currentSongFromAlbum = null;
+
+
+
+var $previousButton = $('.main-controls .previous');
+var $nextButton = $('.main-controls .next');
+
+
+
 var setSong = function(songNumber) {
     //assigns currentlyPlayingSongNumber and currentSongFromAlbum a new value based on the new song number.
     currentlyPlayingSongNumber = parseInt(songNumber);
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+    console.log(currentSongFromAlbum)
 }
 //Replace all instances where we manually assign values to these functions with a call to setSong().
+
+
 
 var getSongNumberCell = function(number) {
     //and returns the song number element that corresponds to that song number
 }
 //Replace all instances where we use the selector with a getSongNumberCell() call.
+
 
 
 var createSongRow = function(songNumber, songName, songLength) {
@@ -95,6 +119,8 @@ var setCurrentAlbum = function(album) {
     }
 };
 
+
+
 var trackIndex = function(album, song) {
     return album.songs.indexOf(song);
 };
@@ -109,20 +135,6 @@ var updatePlayerBarSong = function() {
 };
 
 
-
-// Album button templates
-var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
-var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
-var playerBarPlayButton = '<span class="ion-play"></span>';
-var playerBarPauseButton = '<span class="ion-pause"></span>';
-
-// Store state of playing songs
-var currentAlbum = null;
-var currentlyPlayingSongNumber = null;
-var currentSongFromAlbum = null;
-
-var $previousButton = $('.main-controls .previous');
-var $nextButton = $('.main-controls .next');
 
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
@@ -177,7 +189,6 @@ var previousSong = function() {
     // Set a new current song
     setSong(currentSongIndex - 1);
     //currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
-    console.log(currentSongFromAlbum)
 
     // Update the Player Bar information
     updatePlayerBarSong();
