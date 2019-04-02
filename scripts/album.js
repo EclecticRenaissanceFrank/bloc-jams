@@ -32,6 +32,7 @@ var setSong = function(songNumber) {
 
 
 var getSongNumberCell = function(number) {
+    return $('.song-item-number[data-song-number="' + number + '"]');
     //and returns the song number element that corresponds to that song number
 }
 //Replace all instances where we use the selector with a getSongNumberCell() call.
