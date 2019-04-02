@@ -23,19 +23,17 @@ var $nextButton = $('.main-controls .next');
 
 
 var setSong = function(songNumber) {
-    //assigns currentlyPlayingSongNumber and currentSongFromAlbum a new value based on the new song number.
+    // Assigns currentlyPlayingSongNumber and currentSongFromAlbum a new value based on the new song number.
     currentlyPlayingSongNumber = parseInt(songNumber);
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
 }
-//Replace all instances where we manually assign values to these functions with a call to setSong().
 
 
 
 var getSongNumberCell = function(number) {
+    // Returns the song number element that corresponds to that song number
     return $('.song-item-number[data-song-number="' + number + '"]');
-    //and returns the song number element that corresponds to that song number
 }
-//Replace all instances where we use the selector with a getSongNumberCell() call.
 
 
 
