@@ -14,6 +14,7 @@ var playerBarPauseButton = '<span class="ion-pause"></span>';
 var currentAlbum = null;
 var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null;
+var currentSoundFile = null;
 
 
 
@@ -26,6 +27,14 @@ var setSong = function(songNumber) {
     // Assigns currentlyPlayingSongNumber and currentSongFromAlbum a new value based on the new song number.
     currentlyPlayingSongNumber = parseInt(songNumber);
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+    
+    // Assign a new Buzz sound object. We've passed the audio file via the audioUrl property on the currentSongFromAlbum object.
+    currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
+        
+        // We've passed in a settings object that has two properties defined, formats and preload. formats is an array of strings with acceptable audio formats. We've only included the 'mp3' string because all of our songs are mp3s. Setting the preload property to true tells Buzz that we want the mp3s loaded as soon as the page loads.
+        formats: [ 'mp3' ],
+        preload: true
+    });
 }
 
 
@@ -60,15 +69,24 @@ var createSongRow = function(songNumber, songName, songLength) {
             // Switch from Play -> Pause button to indicate new song is playing.
             $(this).html(pauseButtonTemplate);
             setSong(songNumber);
-
+            buzz.play();
             updatePlayerBarSong();
         } else if (currentlyPlayingSongNumber === songNumber) {
             // Switch from Pause -> Play button to pause currently playing song.
-            $(this).html(playButtonTemplate);
+            /*$(this).html(playButtonTemplate);
             $('.main-controls .play-pause').html(playerBarPlayButton);
             currentlyPlayingSongNumber = null;
             currentSongFromAlbum = null;
-        }
+            
+            In the third conditional statement, when the user clicks the pause button for the same song that is playing, we need to get rid of the logic that sets the currentlyPlayingSongNumber and currentSongFromAlbum to null. We should replace it with a conditional statement that checks if the currentSoundFile is paused*/
+                if (currentSoundFile === //paused) 
+                    {
+                        //If it is, we need to start playing the song again and revert the icon in the song row and the player bar to the pause button.
+                    } else {
+                        //If it isn't paused, we need to pause it and set the content of the song number cell and player bar's pause button back to the play button.
+                    }
+
+        }//else if close bracket
     };
 
     var onHover = function(event) {
