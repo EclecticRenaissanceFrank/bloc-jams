@@ -79,7 +79,7 @@ var createSongRow = function(songNumber, songName, songLength) {
             currentSongFromAlbum = null;
             
             In the third conditional statement, when the user clicks the pause button for the same song that is playing, we need to get rid of the logic that sets the currentlyPlayingSongNumber and currentSongFromAlbum to null. We should replace it with a conditional statement that checks if the currentSoundFile is paused*/
-                if (currentSoundFile === //paused) 
+                if (currentSoundFile.isPaused)
                     {
                         //If it is, we need to start playing the song again and revert the icon in the song row and the player bar to the pause button.
                     } else {
