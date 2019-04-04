@@ -72,24 +72,18 @@ var createSongRow = function(songNumber, songName, songLength) {
             currentSoundFile.play();
             updatePlayerBarSong();
         } else if (currentlyPlayingSongNumber === songNumber) {
-            // Switch from Pause -> Play button to pause currently playing song.
-            /*$(this).html(playButtonTemplate);
-            $('.main-controls .play-pause').html(playerBarPlayButton);
-            currentlyPlayingSongNumber = null;
-            currentSongFromAlbum = null;
-            
-            In the third conditional statement, when the user clicks the pause button for the same song that is playing, we need to get rid of the logic that sets the currentlyPlayingSongNumber and currentSongFromAlbum to null. We should replace it with a conditional statement that checks if the currentSoundFile is paused*/
-                if (currentSoundFile.isPaused) {
-                        // If it is, we need to start playing the song again and revert the icon in the song row and the player bar to the pause button.
-                        currentSoundFile.play();
-                        $(this).html(playButtonTemplate);
-                        $(".main-controls .play-pause").html(playerBarPlayButton);
-                    } else {
-                        // If it isn't paused, we need to pause it and set the content of the song number cell and player bar's pause button back to the play button.
-                        currentSoundFile.pause();
-                        $(this).html(pauseButtonTemplate);
-                        $("main-controls .play-pause").html(playerBarPauseButton);
-                    }
+            // Conditional statement that checks if the currentSoundFile is paused
+            if (currentSoundFile.isPaused) {
+                // If it is, we need to start playing the song again and revert the icon in the song row and the player bar to the pause button.
+                $(this).html(playButtonTemplate);
+                $(".main-controls .play-pause").html(playerBarPlayButton);
+                currentSoundFile.play();
+            } else {
+                // If it isn't paused, we need to pause it and set the content of the song number cell and player bar's pause button back to the play button.
+                $(this).html(pauseButtonTemplate);
+                $("main-controls .play-pause").html(playerBarPauseButton);
+                currentSoundFile.pause();
+            }
         }
     };
 
