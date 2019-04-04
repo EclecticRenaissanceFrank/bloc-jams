@@ -69,7 +69,7 @@ var createSongRow = function(songNumber, songName, songLength) {
             // Switch from Play -> Pause button to indicate new song is playing.
             $(this).html(pauseButtonTemplate);
             setSong(songNumber);
-            buzz.play();
+            currentSoundFile.play();
             updatePlayerBarSong();
         } else if (currentlyPlayingSongNumber === songNumber) {
             // Switch from Pause -> Play button to pause currently playing song.
@@ -79,11 +79,13 @@ var createSongRow = function(songNumber, songName, songLength) {
             currentSongFromAlbum = null;
             
             In the third conditional statement, when the user clicks the pause button for the same song that is playing, we need to get rid of the logic that sets the currentlyPlayingSongNumber and currentSongFromAlbum to null. We should replace it with a conditional statement that checks if the currentSoundFile is paused*/
-                if (currentSoundFile.isPaused)
-                    {
+                if (currentSoundFile.isPaused) {
                         //If it is, we need to start playing the song again and revert the icon in the song row and the player bar to the pause button.
+                        currentSoundFile.play();
+
                     } else {
                         //If it isn't paused, we need to pause it and set the content of the song number cell and player bar's pause button back to the play button.
+                        currentSoundFile.pause();
                     }
 
         }//else if close bracket
