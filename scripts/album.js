@@ -21,6 +21,8 @@ var currentVolume = 80;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
+// Create a variable to hold the $('.main-controls .play-pause') selector and add a click() event to it in the $(document).ready() block with togglePlayFromPlayerBar() as an event handler.
+var $playPause = $('.main-controls .play-pause');
 
 
 
@@ -167,7 +169,34 @@ $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
+
+    // Create a variable to hold the $('.main-controls .play-pause') selector and add a click() event to it in the $(document).ready() block with togglePlayFromPlayerBar() as an event handler.
+    /*
+    $( "#target" ).click(function() {
+        alert( "Handler for .click() called." );
+    });
+    */
+
+    $( "#target" ).click(function() {
+        alert( "Handler for .click() called." );
+    });
 });
+
+
+var togglePlayFromPlayerBar = function() {
+
+    // If a song is paused and the play button is clicked in the player bar, it will
+
+        // Change the song number cell from a play button to a pause button
+        // Change the HTML of the player bar's play button to a pause button
+        // Play the song
+
+    // If the song is playing (so a current sound file exist), and the pause button is clicked
+
+        // Change the song number cell from a pause button to a play button
+        // Change the HTML of the player bar's pause button to a play button
+        // Pause the song
+};
 
 
 
