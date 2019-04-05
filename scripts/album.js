@@ -15,6 +15,7 @@ var currentAlbum = null;
 var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null;
 var currentSoundFile = null;
+var currentVolume = 80;
 
 
 
@@ -24,18 +25,30 @@ var $nextButton = $('.main-controls .next');
 
 
 var setSong = function(songNumber) {
+    if (currentSoundFile) {
+        currentSoundFile.stop();
+    }
     // Assigns currentlyPlayingSongNumber and currentSongFromAlbum a new value based on the new song number.
     currentlyPlayingSongNumber = parseInt(songNumber);
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
     
     // Assign a new Buzz sound object. We've passed the audio file via the audioUrl property on the currentSongFromAlbum object.
     currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
-        
-        // We've passed in a settings object that has two properties defined, formats and preload. formats is an array of strings with acceptable audio formats. We've only included the 'mp3' string because all of our songs are mp3s. Setting the preload property to true tells Buzz that we want the mp3s loaded as soon as the page loads.
+        // We've passed in a settings object that has two properties defined, formats and preload. Formats is an array of strings with acceptable audio formats. We've only included the 'mp3' string because all of our songs are mp3s. Setting the preload property to true tells Buzz that we want the mp3s loaded as soon as the page loads.
         formats: [ 'mp3' ],
-        preload: true
+        preload: true,
     });
-}
+
+    setVolume(currentVolume);
+};
+
+
+
+var setVolume = function(volume) {
+    if (currentSoundFile) {
+        currentSoundFile.setVolume(volume);
+    }
+};
 
 
 
@@ -172,6 +185,8 @@ var nextSong = function() {
 
     // Set a new current song
     setSong(currentSongIndex + 1);
+    // Play Songs When Skipping
+    currentSoundFile.play();
 
     // Update the Player Bar information
     updatePlayerBarSong();
@@ -199,6 +214,8 @@ var previousSong = function() {
 
     // Set a new current song
     setSong(currentSongIndex + 1);
+    // Play Songs When Skipping
+    currentSoundFile.play();
 
     // Update the Player Bar information
     updatePlayerBarSong();
