@@ -21,8 +21,8 @@ var currentVolume = 80;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
-// Create a variable to hold the $('.main-controls .play-pause') selector and add a click() event to it in the $(document).ready() block with togglePlayFromPlayerBar() as an event handler.
-var $playPause = $('.main-controls .play-pause');
+// Create a variable to hold the $('.main-controls .play-pause') selector
+var $playPauseButton = $('.main-controls .play-pause');
 
 
 
@@ -170,16 +170,19 @@ $(document).ready(function() {
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
 
-    // Create a variable to hold the $('.main-controls .play-pause') selector and add a click() event to it in the $(document).ready() block with togglePlayFromPlayerBar() as an event handler.
+    // Add a click() event to playPauseButton in the $(document).ready() block with togglePlayFromPlayerBar() as an event handler.
     /*
     $( "#target" ).click(function() {
         alert( "Handler for .click() called." );
     });
     */
 
-    $( "#target" ).click(function() {
-        alert( "Handler for .click() called." );
+    $( "$playPauseButton" ).click(function() {
+        togglePlayFromPlayerBar();
     });
+
+    $playPauseButton.click(togglePlayFromPlayerBar);
+
 });
 
 
