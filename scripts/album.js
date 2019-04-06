@@ -171,19 +171,9 @@ $(document).ready(function() {
     $nextButton.click(nextSong);
 
     // Add a click() event to playPauseButton in the $(document).ready() block with togglePlayFromPlayerBar() as an event handler.
-    /*
-    $( "#target" ).click(function() {
-        alert( "Handler for .click() called." );
-    });
-    */
-
-    $( "$playPauseButton" ).click(function() {
-        togglePlayFromPlayerBar();
-    });
-
     $playPauseButton.click(togglePlayFromPlayerBar);
-
 });
+
 
 
 var togglePlayFromPlayerBar = function() {
