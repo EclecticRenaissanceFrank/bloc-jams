@@ -180,7 +180,7 @@ var togglePlayFromPlayerBar = function() {
     // If a song is paused and the play button is clicked in the player bar, it will
     if (currentSoundFile.isPaused()/* && $playPauseButton.click(clickHandler)*/) {
         // Change the song number cell from a play button to a pause button
-        songNumberCell.html(pauseButtonTemplate);
+        //songNumberCell.html(pauseButtonTemplate);
         // Change the HTML of the player bar's play button to a pause button
         $playPauseButton.html(playerBarPauseButton);
         // Play the song
@@ -188,7 +188,7 @@ var togglePlayFromPlayerBar = function() {
     // If the song is playing (so a current sound file exist), and the pause button is clicked
     } else if (!currentSoundFile.isPaused()/* && $playPauseButton.click(clickHandler)*/) {
         // Change the song number cell from a pause button to a play button
-        songNumberCell.html(playButtonTemplate);
+        //songNumberCell.html(playButtonTemplate);
         // Change the HTML of the player bar's pause button to a play button
         $playPauseButton.html(playerBarPlayButton);
         // Pause the song
