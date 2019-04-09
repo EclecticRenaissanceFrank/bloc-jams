@@ -36,7 +36,6 @@ var setSong = function(songNumber) {
     
     // Assign a new Buzz sound object. We've passed the audio file via the audioUrl property on the currentSongFromAlbum object.
     currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
-        // We've passed in a settings object that has two properties defined, formats and preload. Formats is an array of strings with acceptable audio formats. We've only included the 'mp3' string because all of our songs are mp3s. Setting the preload property to true tells Buzz that we want the mp3s loaded as soon as the page loads.
         formats: [ 'mp3' ],
         preload: true,
     });
@@ -169,26 +168,24 @@ $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
-
-    // Add a click() event to playPauseButton in the $(document).ready() block with togglePlayFromPlayerBar() as an event handler.
     $playPauseButton.click(togglePlayFromPlayerBar);
 });
 
 
 
 var togglePlayFromPlayerBar = function() {
-    // If a song is paused and the play button is clicked in the player bar, it will
-    if (currentSoundFile.isPaused()/* && $playPauseButton.click(clickHandler)*/) {
+    // If a song is paused and the play button is clicked(171) in the player bar, it will
+    if (currentSoundFile.isPaused()) {
         // Change the song number cell from a play button to a pause button
-        //songNumberCell.html(pauseButtonTemplate);
+        songNumberCell.html(pauseButtonTemplate);
         // Change the HTML of the player bar's play button to a pause button
         $playPauseButton.html(playerBarPauseButton);
         // Play the song
         currentSoundFile.play();
     // If the song is playing (so a current sound file exist), and the pause button is clicked
-    } else if (!currentSoundFile.isPaused()/* && $playPauseButton.click(clickHandler)*/) {
+    } else if (!currentSoundFile.isPaused()) {
         // Change the song number cell from a pause button to a play button
-        //songNumberCell.html(playButtonTemplate);
+        songNumberCell.html(playButtonTemplate);
         // Change the HTML of the player bar's pause button to a play button
         $playPauseButton.html(playerBarPlayButton);
         // Pause the song
