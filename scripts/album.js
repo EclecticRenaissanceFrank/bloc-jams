@@ -45,6 +45,14 @@ var setSong = function(songNumber) {
 
 
 
+var seek = function(time) {
+    if (currentSoundFile) {
+        currentSoundFile.setTime(time);
+    }
+}
+
+
+
 var setVolume = function(volume) {
     if (currentSoundFile) {
         currentSoundFile.setVolume(volume);
@@ -84,6 +92,7 @@ var createSongRow = function(songNumber, songName, songLength) {
             $(this).html(pauseButtonTemplate);
             setSong(songNumber);
             currentSoundFile.play();
+            updateSeekBarWhileSongPlays();
             updatePlayerBarSong();
         } else if (currentlyPlayingSongNumber === songNumber) {
             // Conditional statement that checks if the currentSoundFile is paused
@@ -144,6 +153,21 @@ var setCurrentAlbum = function(album) {
     for (var i = 0; i < album.songs.length; i++) {
         var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
         $albumSongList.append($newRow);
+    }
+};
+
+
+
+var updateSeekBarWhileSongPlays = function() {
+    if (currentSoundFile) {
+        // bind() the timeupdate event to currentSoundFile. timeupdate is a custom Buzz event that fires repeatedly while time elapses during song playback.
+        currentSoundFile.bind('timeupdate', function(event) {
+            // New method for calculating the seekBarFillRatio. We use Buzz's getTime() method to get the current time of the song and the getDuration() method for getting the total length of the song. Both values return time in seconds
+            var seekBarFillRatio = this.getTime() / this.getDuration();
+            var $seekBar = $('.seek-control .seek-bar');
+
+            updateSeekPercentage($seekBar, seekBarFillRatio);
+        });
     }
 };
 
@@ -272,6 +296,7 @@ var nextSong = function() {
     setSong(currentSongIndex + 1);
     // Play Songs When Skipping
     currentSoundFile.play();
+    updateSeekBarWhileSongPlays();
 
     // Update the Player Bar information
     updatePlayerBarSong();
@@ -301,6 +326,7 @@ var previousSong = function() {
     setSong(currentSongIndex + 1);
     // Play Songs When Skipping
     currentSoundFile.play();
+    updateSeekBarWhileSongPlays();
 
     // Update the Player Bar information
     updatePlayerBarSong();
