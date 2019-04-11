@@ -149,6 +149,43 @@ var setCurrentAlbum = function(album) {
 
 
 
+var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
+    // multiplying the ratio by 100 to determine a percentage
+    var offsetXPercent = seekBarFillRatio * 100;
+    // to make sure percentage isn't less than zero
+    offsetXPercent = Math.max(0, offsetXPercent);
+    // to make sure percentage isn't more than 100
+    offsetXPercent = Math.min(100, offsetXPercent);
+ 
+    // convert the percentage to a string and add %
+    var percentageString = offsetXPercent + '%';
+    // When we set the width of the .fill class and the left value of the .thumb class,
+    $seekBar.find('.fill').width(percentageString);
+    $seekBar.find('.thumb').css({left: percentageString});
+    // the CSS interprets the value as a percent instead of a unit-less number between 0 and 100
+};
+
+
+
+// Uses a click event to determine the fill width and thumb location of the seek bar
+var setupSeekBars = function() {
+    // Select either seek bar. The seek bar that updates will be determined by the target of the event
+    var $seekBars = $('.player-bar .seek-bar');
+
+    $seekBars.click(function(event) {
+        // Subtract the offset() of the seek bar held in $(this) from the left side
+        var offsetX = event.pageX - $(this).offset().left;
+        var barWidth = $(this).width();
+        // Divide offsetX by the width of the entire bar to calculate seekBarFillRatio
+        var seekBarFillRatio = offsetX / barWidth;
+
+        // Pass $(this) as the $seekBar argument and seekBarFillRatio for its eponymous argument to updateSeekBarPercentage()
+        updateSeekPercentage($(this), seekBarFillRatio);
+    });
+};
+
+
+
 var trackIndex = function(album, song) {
     return album.songs.indexOf(song);
 };
@@ -166,6 +203,7 @@ var updatePlayerBarSong = function() {
 
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
+    setupSeekBars();
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
     $playPauseButton.click(togglePlayFromPlayerBar);
