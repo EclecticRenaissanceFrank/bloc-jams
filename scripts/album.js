@@ -88,6 +88,12 @@ var createSongRow = function(songNumber, songName, songLength) {
             currentlyPlayingCell.html(currentlyPlayingSongNumber);
         }
         if (currentlyPlayingSongNumber !== songNumber) {
+
+            var $volumeFill = $('.volume .fill');
+            var $volumeThumb = $('.volume .thumb');
+            $volumeFill.width(currentVolume + '%');
+            $volumeThumb.css({left: currentVolume + '%'});
+
             // Switch from Play -> Pause button to indicate new song is playing.
             $(this).html(pauseButtonTemplate);
             setSong(songNumber);
@@ -204,6 +210,19 @@ var setupSeekBars = function() {
         // Divide offsetX by the width of the entire bar to calculate seekBarFillRatio
         var seekBarFillRatio = offsetX / barWidth;
 
+        if (
+            // Checks the class of the seek bar's parent to determine whether the current seek bar is changing the volume or seeking to a song position
+            $seekBars.parent.hasClass('seek-control')
+
+        ) {
+            // If it's the playback seek bar, seek to the position of the song determined by the seekBarFillRatio
+            seek(seekBarFillRatio * currentSoundFile.getDuration());
+
+        } else {
+            // Otherwise, set the volume based on the seekBarFillRatio
+            setVolume(seekBarFillRatio * 100);
+        }
+
         // Pass $(this) as the $seekBar argument and seekBarFillRatio for its eponymous argument to updateSeekBarPercentage()
         updateSeekPercentage($(this), seekBarFillRatio);
     });
@@ -219,7 +238,13 @@ var setupSeekBars = function() {
             var offsetX = event.pageX - $seekBar.offset().left;
             var barWidth = $seekBar.width();
             var seekBarFillRatio = offsetX / barWidth;
- 
+
+            if ($seekBars.parent.hasClass('seek-control')) {
+                seek(seekBarFillRatio * currentSoundFile.getDuration());   
+            } else {
+                setVolume(seekBarFillRatio);
+            }
+
             updateSeekPercentage($seekBar, seekBarFillRatio);
         });
  
