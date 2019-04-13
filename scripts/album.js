@@ -199,6 +199,10 @@ var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
 
 // Uses a click event to determine the fill width and thumb location of the seek bar
 var setupSeekBars = function() {
+    console.log(event.target)
+    console.log(event.target.parentNode)
+    console.log(event.target.parentNode.hasClass)
+    console.log(event.target.parentNode.classList)
     // Find all elements in the DOM with class "seek-bar" that are within class "player-bar". 
     // This will return a jQuery wrapped array containing both the song seek control and the volume control.
     var $seekBars = $('.player-bar .seek-bar');
