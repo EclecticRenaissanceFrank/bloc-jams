@@ -199,15 +199,15 @@ var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
 
 // Uses a click event to determine the fill width and thumb location of the seek bar
 var setupSeekBars = function() {
-    console.log(event.target)
-    console.log(event.target.parentNode)
-    console.log(event.target.parentNode.hasClass)
-    console.log(event.target.parentNode.classList)
     // Find all elements in the DOM with class "seek-bar" that are within class "player-bar". 
     // This will return a jQuery wrapped array containing both the song seek control and the volume control.
     var $seekBars = $('.player-bar .seek-bar');
 
     $seekBars.click(function(event) {
+        console.log(event.target)
+        console.log(event.target.parentNode)
+        console.log(event.target.parentNode.hasClass)
+        console.log(event.target.parentNode.classList)
         // Subtract the offset() of the seek bar held in $(this) from the left side
         var offsetX = event.pageX - $(this).offset().left;
         var barWidth = $(this).width();
@@ -233,6 +233,10 @@ var setupSeekBars = function() {
 
     // we find elements with a class of .thumb inside our $seekBars and add an event listener for the mousedown event. A click event fires when a mouse is pressed and released quickly, but the mousedown event will fire as soon as the mouse button is pressed down. jQuery allows us access to a shorthand method of attaching the mousedown event by calling mousedown on a jQuery collection.
     $seekBars.find('.thumb').mousedown(function(event) {
+        console.log(event.target)
+        console.log(event.target.parentNode)
+        console.log(event.target.parentNode.hasClass)
+        console.log(event.target.parentNode.classList)
 
         // we are taking the context of the event and wrapping it in jQuery. In this scenario, this will be equal to the .thumb node that was clicked. Because we are attaching an event to both the song seek and volume control, this is an important way for us to determine which of these nodes dispatched the event. We can then use the parent method, which will select the immediate parent of the node. This will be whichever seek bar this .thumb belongs to.
         var $seekBar = $(this).parent();
