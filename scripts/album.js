@@ -113,6 +113,8 @@ var createSongRow = function(songNumber, songName, songLength) {
                 $("main-controls .play-pause").html(playerBarPauseButton);
                 currentSoundFile.pause();
             }
+            currentlyPlayingSongNumber = null;
+            currentSongFromAlbum = null;
         }
     };
 
@@ -300,6 +302,7 @@ var togglePlayFromPlayerBar = function() {
         $playPauseButton.html(playerBarPlayButton);
         // Pause the song
         currentSoundFile.pause();
+        console.log();
     }
 };
 
