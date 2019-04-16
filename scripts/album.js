@@ -102,7 +102,7 @@ var createSongRow = function(songNumber, songName, songLength) {
             updatePlayerBarSong();
         } else if (currentlyPlayingSongNumber === songNumber) {
             // Conditional statement that checks if the currentSoundFile is paused
-            if (currentSoundFile.isPaused) {
+            if (currentSoundFile.isPaused()) {
                 // If it is, we need to start playing the song again and revert the icon in the song row and the player bar to the pause button.
                 $(this).html(playButtonTemplate);
                 $(".main-controls .play-pause").html(playerBarPlayButton);
@@ -302,7 +302,7 @@ var togglePlayFromPlayerBar = function() {
         $playPauseButton.html(playerBarPlayButton);
         // Pause the song
         currentSoundFile.pause();
-        console.log();
+        console.log(currentSoundFile)
     }
 };
 
