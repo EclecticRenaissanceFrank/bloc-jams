@@ -30,7 +30,7 @@ var setSong = function(songNumber) {
     if (currentSoundFile) {
         currentSoundFile.stop();
     }
-    // Assigns currentlyPlayingSongNumber and currentSongFromAlbum a new value based on the new song number.
+    // Assigns currentlyPlayingSongNumber and currentSongFromAlbum a new value based on the new song number
     currentlyPlayingSongNumber = parseInt(songNumber);
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
     
@@ -83,7 +83,7 @@ var createSongRow = function(songNumber, songName, songLength) {
         var songNumber = parseInt($(this).attr('data-song-number'));
 
         if (currentlyPlayingSongNumber !== null) {
-            // Revert to song number for currently playing song because user started playing new song.
+            // Revert to song number for currently playing song because user started playing new song
             var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
             currentlyPlayingCell.html(currentlyPlayingSongNumber);
         }
@@ -94,7 +94,7 @@ var createSongRow = function(songNumber, songName, songLength) {
             $volumeFill.width(currentVolume + '%');
             $volumeThumb.css({left: currentVolume + '%'});
 
-            // Switch from Play -> Pause button to indicate new song is playing.
+            // Switch from Play -> Pause button to indicate new song is playing
             $(this).html(pauseButtonTemplate);
             setSong(songNumber);
             currentSoundFile.play();
@@ -103,12 +103,12 @@ var createSongRow = function(songNumber, songName, songLength) {
         } else if (currentlyPlayingSongNumber === songNumber) {
             // Conditional statement that checks if the currentSoundFile is paused
             if (currentSoundFile.isPaused()) {
-                // If it is, we need to start playing the song again and revert the icon in the song row and the player bar to the pause button.
+                // Paused, start playing the song again and revert the icon in the song row and the player bar to pause
                 $(this).html(playButtonTemplate);
                 $(".main-controls .play-pause").html(playerBarPlayButton);
                 currentSoundFile.play();
             } else {
-                // If it isn't paused, we need to pause it and set the content of the song number cell and player bar's pause button back to the play button.
+                // Not paused, pause it and set both pause buttons back to play
                 $(this).html(pauseButtonTemplate);
                 $("main-controls .play-pause").html(playerBarPauseButton);
                 currentSoundFile.pause();
@@ -168,9 +168,9 @@ var setCurrentAlbum = function(album) {
 
 var updateSeekBarWhileSongPlays = function() {
     if (currentSoundFile) {
-        // bind() the timeupdate event to currentSoundFile. timeupdate is a custom Buzz event that fires repeatedly while time elapses during song playback.
+        // bind() the timeupdate(BuzzLib) event to currentSoundFile
         currentSoundFile.bind('timeupdate', function(event) {
-            // New method for calculating the seekBarFillRatio. We use Buzz's getTime() method to get the current time of the song and the getDuration() method for getting the total length of the song. Both values return time in seconds
+            // New method for calculating the seekBarFillRatio. Buzz's getTime() and getDuration() methods both return time in seconds.
             var seekBarFillRatio = this.getTime() / this.getDuration();
             var $seekBar = $('.seek-control .seek-bar');
 
@@ -199,10 +199,9 @@ var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
 
 
 
-// Uses a click event to determine the fill width and thumb location of the seek bar
+// Click event determines the fill width and thumb location of the seek bar
 var setupSeekBars = function() {
-    // Find all elements in the DOM with class "seek-bar" that are within class "player-bar". 
-    // This will return a jQuery wrapped array containing both the song seek control and the volume control.
+    // Find all elements in the DOM with class "seek-bar" that are within class "player-bar", returns a jQuery wrapped array containing song seek control and the volume control
     var $seekBars = $('.player-bar .seek-bar');
 
     $seekBars.click(function(event) {
@@ -211,15 +210,11 @@ var setupSeekBars = function() {
         var barWidth = $(this).width();
         // Divide offsetX by the width of the entire bar to calculate seekBarFillRatio
         var seekBarFillRatio = offsetX / barWidth;
-
-        if (
-            // Checks the class of the seek bar's parent to determine whether the current seek bar is changing the volume or seeking to a song position
-            $this.parent().hasClass('seek-control')
-
-        ) {
+        
+        // Checks whether the current seek bar is changing the volume or seeking to a song position
+        if (($(this)).parent().hasClass('seek-control')) {
             // If it's the playback seek bar, seek to the position of the song determined by the seekBarFillRatio
             seek(seekBarFillRatio * currentSoundFile.getDuration());
-
         } else {
             // Otherwise, set the volume based on the seekBarFillRatio
             setVolume(seekBarFillRatio * 100);
@@ -229,13 +224,17 @@ var setupSeekBars = function() {
         updateSeekPercentage($(this), seekBarFillRatio);
     });
 
-    // we find elements with a class of .thumb inside our $seekBars and add an event listener for the mousedown event. A click event fires when a mouse is pressed and released quickly, but the mousedown event will fire as soon as the mouse button is pressed down. jQuery allows us access to a shorthand method of attaching the mousedown event by calling mousedown on a jQuery collection.
+    // Find elements with a class of .thumb inside $seekBars
+    // Add an event listener for the mousedown event
+    // A click event fires when a mouse is pressed and released quickly, but the mousedown event will fire as soon as the mouse button is pressed down
     $seekBars.find('.thumb').mousedown(function(event) {
 
-        // we are taking the context of the event and wrapping it in jQuery. In this scenario, this will be equal to the .thumb node that was clicked. Because we are attaching an event to both the song seek and volume control, this is an important way for us to determine which of these nodes dispatched the event. We can then use the parent method, which will select the immediate parent of the node. This will be whichever seek bar this .thumb belongs to.
+        // Take the context of the event and wrap it in jQuery. In this scenario, this is equal to the .thumb node that was clicked
+        // Because an event is attached to both the song seek and volume control, this is an important way to determine which of these nodes dispatched the event
+        // The parent method will select the immediate parent of the node, & will be whichever seek bar this .thumb belongs to
         var $seekBar = $(this).parent();
  
-        // jQuery's bind() event behaves similarly to addEventListener() in that it takes a string of an event instead of wrapping the event in a method like we've seen with all other jQuery events thus far. We use bind() because it allows us to namespace event listeners. The event handler inside the bind() call is identical to the click behavior.
+        // jQuery's bind() event behaves similarly to addEventListener() in that it takes a string of an event instead of wrapping the event in a method. Bind() allows namespacing event listeners. The event handler inside the bind() call is identical to the click behavior.
         $(document).bind('mousemove.thumb', function(event){
             var offsetX = event.pageX - $seekBar.offset().left;
             var barWidth = $seekBar.width();
@@ -250,7 +249,8 @@ var setupSeekBars = function() {
             updateSeekPercentage($seekBar, seekBarFillRatio);
         });
  
-        // we bind the mouseup event with a .thumb namespace. The event handler uses the unbind() event method, which removes the previous event listeners that we just added. If we fail to unbind() them, the thumb and fill would continue to move even after the user released the mouse. The mouseup event fires when the mouse button is released.
+        // Bind the mouseup event with a .thumb namespace. The event handler uses unbind() to remove the previous event listeners that were just added.
+        // Mouseup fires when the mouse button is released.
         $(document).bind('mouseup.thumb', function() {
             $(document).unbind('mousemove.thumb');
             $(document).unbind('mouseup.thumb');
