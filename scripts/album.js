@@ -214,7 +214,7 @@ var setupSeekBars = function() {
 
         if (
             // Checks the class of the seek bar's parent to determine whether the current seek bar is changing the volume or seeking to a song position
-            $seekBars.parent().hasClass('seek-control')
+            $this.parent().hasClass('seek-control')
 
         ) {
             // If it's the playback seek bar, seek to the position of the song determined by the seekBarFillRatio
@@ -244,7 +244,7 @@ var setupSeekBars = function() {
             if ($seekBar.parent().hasClass('seek-control')) {
                 seek(seekBarFillRatio * currentSoundFile.getDuration());   
             } else {
-                setVolume(seekBarFillRatio * 100);
+                setVolume(seekBarFillRatio);
             }
 
             updateSeekPercentage($seekBar, seekBarFillRatio);
