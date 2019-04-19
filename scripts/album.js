@@ -371,20 +371,30 @@ var previousSong = function() {
 
 
 
+
 // Write a function called setCurrentTimeInPlayerBar() that takes one argument, currentTime, that sets the text of the element with the .current-time class to the current time in the song.
+var setCurrentTimeInPlayerBar = function(currentTime) {
+    currentTime = 
+
+}
 // Add the method to updateSeekBarWhileSongPlays() so the current time updates with song playback.
 
 
 
 // Write a function called setTotalTimeInPlayerBar() that takes one argument, totalTime, that sets the text of the element with the .total-time class to the length of the song.
+var setTotalTimeInPlayerBar = function(totalTime) {
+
+}
 // Add the method to updatePlayerBarSong() so the total time is set when a song first plays.
 
 
 
 // Write a function called filterTimeCode that takes one argument, timeInSeconds. It should:
+var filterTimeCode = function() {
 // Use the parseFloat() method to get the seconds in number form.
 // Store variables for whole seconds and whole minutes (hint: use Math.floor() to round numbers down).
 // Return the time in the format X:XX
+}
 
 
 
