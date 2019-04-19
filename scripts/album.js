@@ -177,6 +177,7 @@ var updateSeekBarWhileSongPlays = function() {
             updateSeekPercentage($seekBar, seekBarFillRatio);
         });
     }
+    setCurrentTimeInPlayerBar(currentTime);
 };
 
 
@@ -374,10 +375,9 @@ var previousSong = function() {
 
 // Write a function called setCurrentTimeInPlayerBar() that takes one argument, currentTime, that sets the text of the element with the .current-time class to the current time in the song.
 var setCurrentTimeInPlayerBar = function(currentTime) {
-    currentTime = 
-
+    $(".current-time").text(currentTime);
 }
-// Add the method to updateSeekBarWhileSongPlays() so the current time updates with song playback.
+// Add the method to updateSeekBarWhileSongPlays() so the current time updates with song playback. line 180
 
 
 
