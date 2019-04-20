@@ -175,7 +175,7 @@ var updateSeekBarWhileSongPlays = function() {
             var $seekBar = $('.seek-control .seek-bar');
 
             updateSeekPercentage($seekBar, seekBarFillRatio);
-            setCurrentTimeInPlayerBar(currentTime);
+            setCurrentTimeInPlayerBar(filterTimeCode(currentTime));
         });
     }
 };
@@ -376,7 +376,7 @@ var previousSong = function() {
 
 // Write a function called setCurrentTimeInPlayerBar() that takes one argument, currentTime, that sets the text of the element with the .current-time class to the current time in the song.
 var setCurrentTimeInPlayerBar = function(currentTime) {
-    filterTimeCode($(".current-time").text(currentTime));
+    $(".current-time").text(currentTime);
 }
 // Add the method to updateSeekBarWhileSongPlays() so the current time updates with song playback. line 169
 
@@ -384,7 +384,7 @@ var setCurrentTimeInPlayerBar = function(currentTime) {
 
 // Write a function called setTotalTimeInPlayerBar() that takes one argument, totalTime, that sets the text of the element with the .total-time class to the length of the song.
 var setTotalTimeInPlayerBar = function(totalTime) {
-    filterTimeCode($(".total-time").text(totalTime));
+    $(".total-time").text(totalTime);
 }
 // Add the method to updatePlayerBarSong() so the total time is set when a song first plays. line 270
 
