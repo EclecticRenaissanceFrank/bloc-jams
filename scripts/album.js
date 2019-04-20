@@ -398,7 +398,7 @@ var filterTimeCode = function(timeInSeconds) {
     var wMin = Math.floor(floatTime / 60);
     var wSec = Math.floor(floatTime % 60);
     // Return the time in the format X:XX
-    return wMin + ":" + wSec;
+    return wMin + ":" + (wSec > 10 ? wSec : '0' + wSec);
 }
 
 
