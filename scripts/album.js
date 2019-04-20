@@ -175,7 +175,7 @@ var updateSeekBarWhileSongPlays = function() {
             var $seekBar = $('.seek-control .seek-bar');
 
             updateSeekPercentage($seekBar, seekBarFillRatio);
-            setCurrentTimeInPlayerBar(filterTimeCode(currentTime));
+            setCurrentTimeInPlayerBar(filterTimeCode(currentSoundFile.getTime()));
         });
     }
 };
@@ -372,39 +372,26 @@ var previousSong = function() {
 
 
 
-
-
-// Write a function called setCurrentTimeInPlayerBar() that takes one argument, currentTime, that sets the text of the element with the .current-time class to the current time in the song.
+// Sets the text of the element with the .current-time class to the current time in the song
 var setCurrentTimeInPlayerBar = function(currentTime) {
     $(".current-time").text(currentTime);
 }
-// Add the method to updateSeekBarWhileSongPlays() so the current time updates with song playback. line 169
 
 
 
-// Write a function called setTotalTimeInPlayerBar() that takes one argument, totalTime, that sets the text of the element with the .total-time class to the length of the song.
+// Sets the text of the element with the .total-time class to the length of the song
 var setTotalTimeInPlayerBar = function(totalTime) {
     $(".total-time").text(totalTime);
 }
-// Add the method to updatePlayerBarSong() so the total time is set when a song first plays. line 270
 
 
 
-// Write a function called filterTimeCode that takes one argument, timeInSeconds. It should:
 var filterTimeCode = function(timeInSeconds) {
-    // Use the parseFloat() method to get the seconds in number form.
+    // Use the parseFloat() method to get the seconds in number form
     var floatTime = parseFloat(timeInSeconds);
-    // Store variables for whole seconds and whole minutes (hint: use Math.floor() to round numbers down).
+    // Store variables for whole seconds and whole minutes
     var wMin = Math.floor(floatTime / 60);
     var wSec = Math.floor(floatTime % 60);
     // Return the time in the format X:XX
     return wMin + ":" + (wSec > 10 ? wSec : '0' + wSec);
 }
-
-
-
-// Wrap the arguments passed to setCurrentTimeInPlayerBar() and setTotalTimeInPlayerBar() in a filterTimeCode() call so the time output below the seek bar is formatted.
-
-
-
-// Wrap the songLength variable in createSongRow() in a filterTimeCode() call so the time lengths are formatted. line 71
