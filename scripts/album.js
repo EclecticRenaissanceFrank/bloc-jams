@@ -304,7 +304,6 @@ var togglePlayFromPlayerBar = function() {
         $playPauseButton.html(playerBarPlayButton);
         // Pause the song
         currentSoundFile.pause();
-        console.log(currentSoundFile)
     }
 };
 
